@@ -24,7 +24,7 @@ public class Size {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="s_id")
-	private int id;
+	private long id;
 	@Column(name="s_name")
 	private String name;
 	public Size() {}
@@ -37,11 +37,11 @@ public class Size {
 			inverseJoinColumns= @JoinColumn(name="s_id")
 			)
 	private List<Product>  products;
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

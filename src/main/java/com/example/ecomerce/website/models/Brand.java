@@ -20,7 +20,7 @@ public class Brand {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="b_id")
-	private int id;
+	private long id;
 	@Column(name="b_name")
 	private String name;
 	@OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL,mappedBy ="brand" )
@@ -52,14 +52,14 @@ public class Brand {
 
 
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
 
 
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

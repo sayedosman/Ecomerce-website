@@ -19,7 +19,7 @@ public class User {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="u_id")
-	private int userId;
+	private long userId;
 	@Column(name="u_fname")
 	private String firstname;
 	@Column(name="u_lname")
@@ -50,12 +50,12 @@ public class User {
 	public User() {}
 	
 	
-	public int getUserId() {
+	public long getUserId() {
 		return userId;
 	}
 
 
-	public void setUserId(int userId) {
+	public void setUserId(long userId) {
 		this.userId = userId;
 	}
 

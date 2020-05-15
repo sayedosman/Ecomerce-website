@@ -24,7 +24,7 @@ public class Offer {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="o_id")
-	private int id;
+	private long id;
 	@ManyToMany(fetch=FetchType.EAGER,cascade={CascadeType.DETACH, 
 			CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
 	@JoinTable(
@@ -36,12 +36,12 @@ public class Offer {
 	private List<Product> productS;
 	@Column(name="o_offer")
 	private String name;
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

@@ -35,7 +35,7 @@ public class Product {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="p_id")
-	private int id;
+	private long id;
 	@Column(name="p_name",unique = true)
 	private String name;
 	@ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
@@ -67,7 +67,7 @@ public class Product {
 	@Fetch(value = FetchMode.SUBSELECT)
 	private List<Color>colors;
 	
-	@OneToMany(fetch = FetchType.EAGER,cascade=CascadeType.ALL,mappedBy = "productS")
+	@ManyToMany(fetch = FetchType.EAGER,cascade=CascadeType.ALL,mappedBy = "productS")
 	@Fetch(value = FetchMode.SUBSELECT)
 	private List<Offer> offer;
 	public Product() {}
@@ -94,7 +94,7 @@ public class Product {
 	@Fetch(value = FetchMode.SUBSELECT)
 	private List<Size>sizes;
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 	
@@ -104,7 +104,7 @@ public class Product {
 	public void setImages(List<Images> images) {
 		this.images = images;
 	}
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	public String getName() {

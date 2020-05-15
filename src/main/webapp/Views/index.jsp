@@ -136,7 +136,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		           <c:forEach var="Product" items="${Products}">
 					<div class="col-md-4 product-left p-left">
 							<div class="product-main simpleCart_shelfItem">
-					            <a href="singleProduct.jsp?id=${Product.id}" class="mask"><img class="img-responsive zoom-img" src="/resourses/${Product.getImages().get(0).getName() }"  alt="" /></a>
+					            <a href="/luxury/single/${Product.id}" class="mask"><img class="img-responsive zoom-img" src="/resourses/${Product.getImages().get(0).getName() }"  alt="" /></a>
 						<div class="product-bottom">
 					<h3>${Product.name }</h3>
 		           <span>${Product.quantity.equals(Product.sold) ? 'sold' : '' } </span>

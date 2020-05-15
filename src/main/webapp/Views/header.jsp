@@ -67,7 +67,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					 <div style=color:white;> 
 					 <sec:authorize access="isAuthenticated()">
 					 welcome
-					 <sec:authentication property="principal.username"/>
+					 <sec:authentication property="principal.user.firstname"/>
                </sec:authorize>
 			
 				</div>
