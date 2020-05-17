@@ -17,4 +17,12 @@ public class BrandService {
 	{
 		return brandRepository.findAll();
 	}
+	
+	public Brand getBrand(String name)
+	{
+		for(Brand brand:getAllBrand())
+			if(brand.getName().equals(name))
+				return brand;
+		return null;
+	}
 }

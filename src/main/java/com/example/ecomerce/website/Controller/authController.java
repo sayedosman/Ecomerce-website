@@ -13,7 +13,6 @@ import com.example.ecomerce.website.services.CategoryService;
 import com.example.ecomerce.website.services.ColorService;
 import com.example.ecomerce.website.services.SizeService;
 @Controller
-@RequestMapping("/luxury/auth")
 public class authController {
 	
 	@Autowired
@@ -32,19 +31,11 @@ public class authController {
 		  mvn.addObject("Brands",brandService.getAllBrand());
 		  return mvn;
 	  }
-		/*@PostMapping("/login")
-		public ModelAndView processSignup(User user) {
-			
-			ModelAndView mav  = new ModelAndView("index");
-			
-			System.out.println(user);
-			
-			mav.addObject("username", user.getEamil());
-			
-			return mav;
-		}*/
-
-	
+	@PostMapping("/login")
+	public ModelAndView showProducs()
+	  {
+		 	  return null;
+	  }
 	
 	
 }

@@ -1,11 +1,15 @@
 package com.example.ecomerce.website.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.ecomerce.website.models.Color;
@@ -24,7 +28,7 @@ public class homeController {
 	private CategoryService categoryService;
 	@Autowired
 	private BrandService brandService;
-	@Autowired
+	@Autowired 
 	private ProductService productService;
 	@Autowired
 	private SizeService sizeService;
@@ -41,15 +45,47 @@ public class homeController {
 	  mvn.addObject("Products",productService.getAllProduct());
 	  return mvn;
   }
-  @PostMapping("index")
-  public ModelAndView showProducts2()
-  {
-	  ModelAndView mvn=new ModelAndView("index");
-	  mvn.addObject("Categeries",categoryService.getAllCategory());
-	  mvn.addObject("Brands",brandService.getAllBrand());
-	  mvn.addObject("Products",productService.getAllProduct());
-	  return mvn;
+  @PostMapping("/handl")
+  public ModelAndView handleMyURL(@RequestParam("name") String search) {
+       if(categoryService.getCategory(search)!=null)
+       {
+    	   ModelAndView mvn=new ModelAndView("searchCatogery");
+    		  mvn.addObject("Categeries",categoryService.getAllCategory());
+    		  mvn.addObject("Brands",brandService.getAllBrand());
+    		  mvn.addObject("category", categoryService.getCategory(search));
+    		  return mvn;
+       }
+       else if(brandService.getBrand(search)!=null)
+       {
+    	   ModelAndView mvn=new ModelAndView("searchBrand");
+ 		  mvn.addObject("Categeries",categoryService.getAllCategory());
+ 		  mvn.addObject("Brands",brandService.getAllBrand());
+ 		  mvn.addObject("brand", brandService.getBrand(search));
+ 		  return mvn;
+       }
+       else  if(productService.getproduct(search)!=null)
+       {
+    	   
+    	   
+    	   ModelAndView mvn=new ModelAndView("searchCatogery");
+    		  mvn.addObject("Categeries",categoryService.getAllCategory());
+    		  mvn.addObject("Brands",brandService.getAllBrand());
+    		  mvn.addObject("category", productService.getproduct(search).getCategory());
+    		  return mvn;
+       }
+       else
+       {
+    	   ModelAndView mvn=new ModelAndView("index");
+    		  mvn.addObject("Categeries",categoryService.getAllCategory());
+    		  mvn.addObject("Brands",brandService.getAllBrand());
+    		  mvn.addObject("Products",productService.getAllProduct());
+    		  return mvn;
+       }
+	 
   }
+  
+  
+  
   @GetMapping("/single/{ProductId}")
   public ModelAndView showProduct(@PathVariable("ProductId") long ProductId)
   {
@@ -63,5 +99,4 @@ public class homeController {
 	  
 	  return mvn;
   }
-
 }

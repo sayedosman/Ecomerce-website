@@ -49,13 +49,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                <input placeholder="username" type="text" tabindex="3" required name="username"  value="">
 		        
 			    <input placeholder="Password" type="password" tabindex="4" required name="password" value="">
-		  
+		 
+		  <button type="submit">Click Me!</button>
+		  </form>
                         <div class="address">
 							<a class="forgot" href="#">Forgot Your Password?</a>
 							<div class="address submit">
-							<input type="submit" value="login" name="submit">
+							
 							</div>
-							</form>
+							
 							
 
 							

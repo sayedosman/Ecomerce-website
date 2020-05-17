@@ -76,7 +76,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="container">
 			<div class="breadcrumbs-main">
 				<ol class="breadcrumb">
-					<li><a href="index.jsp">Home</a></li>
+					<li><a href="/luxury">Home</a></li>
 					<li class="active">Single</li>
 				</ol>
 			</div>
@@ -180,7 +180,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<form action="/luxury/AllController" method="POST">
 								<div class="address submit">
 										<input type="hidden" name="id" value=${Product.id } />
-										<input type="text" required="required"    name="quantity" value="">
+										<input type="text"    name="quantity" value="">
 										
 										<input type="submit" name="submit"   value="Add to cart"/>
 										</div>

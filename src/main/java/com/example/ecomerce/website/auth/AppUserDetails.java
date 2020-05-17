@@ -16,7 +16,6 @@ public class AppUserDetails implements UserDetails{
 	private static final long serialVersionUID = 1L;
 	private User user;
 	public AppUserDetails(User user) {
-		super();
 		this.user = user;
 	}
 

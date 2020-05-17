@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.ecomerce.website.Repository.ProductRepository;
+import com.example.ecomerce.website.models.Category;
 import com.example.ecomerce.website.models.Color;
 import com.example.ecomerce.website.models.Product;
 import com.example.ecomerce.website.models.Size;
@@ -30,6 +31,17 @@ public class ProductService {
 			    }
 			
 			return null;
+	}
+	
+	public Product getproduct(String name)
+	{
+	for(Product product:getAllProduct())
+		{
+			System.out.println(product.getName());
+			if(product.getName().equals(name))
+				return product;
+		}
+		return null;
 	}
 
 }

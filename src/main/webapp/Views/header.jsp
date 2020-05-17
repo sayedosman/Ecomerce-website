@@ -158,9 +158,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 				<div class="col-md-3 header-right"> 
 				<div class="search-bar">
-				<form action="/luxury/index" method="POST">
+				<form action="/luxury/handl" method="POST">
 					<input type="text"   name="name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}">
-					<input type="submit" name="submit"   value="search"/>
+					<input type="submit" name="submit1"   value="search"/>
 									
 				</div>
 			</div>
