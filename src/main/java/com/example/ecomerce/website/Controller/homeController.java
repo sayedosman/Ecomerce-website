@@ -1,5 +1,7 @@
 package com.example.ecomerce.website.Controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.ecomerce.website.models.Color;
@@ -45,8 +48,28 @@ public class homeController {
 	  mvn.addObject("Products",productService.getAllProduct());
 	  return mvn;
   }
-  @PostMapping("/handl")
+  @PostMapping("/handle")
+  public String handle(@RequestParam("submit") String submit)
+  {
+	  if(submit.equals("search"))
+	  {
+		  return "forward:/luxury/search";
+	  }
+	  else if(submit.equals("Add to cart"))
+	  {
+		  return "forward:/luxury/luxury/cart";
+	  }
+	  else if(submit.equals("Update"))
+	  {
+		  return "forward:/luxury/luxury/update";
+	  }
+	  
+	  else 
+		  return null;
+  }
+  @PostMapping("/search")
   public ModelAndView handleMyURL(@RequestParam("name") String search) {
+	 // if(submit.equals(search))
        if(categoryService.getCategory(search)!=null)
        {
     	   ModelAndView mvn=new ModelAndView("searchCatogery");
@@ -99,4 +122,6 @@ public class homeController {
 	  
 	  return mvn;
   }
+ 
+  
 }

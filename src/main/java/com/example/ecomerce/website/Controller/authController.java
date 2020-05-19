@@ -26,15 +26,17 @@ public class authController {
 	@GetMapping("/login")
 	public ModelAndView showProducts()
 	  {
-		  ModelAndView mvn=new ModelAndView("auth/Login");
+		System.out.println("welcome");
+		  ModelAndView mvn=new ModelAndView("auth/login");
 		  mvn.addObject("Categeries",categoryService.getAllCategory());
 		  mvn.addObject("Brands",brandService.getAllBrand());
 		  return mvn;
 	  }
-	@PostMapping("/login")
+	@PostMapping("login")
 	public ModelAndView showProducs()
 	  {
-		 	  return null;
+		 ModelAndView mvn=new ModelAndView("index");
+		 return mvn;
 	  }
 	
 	

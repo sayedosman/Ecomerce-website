@@ -18,12 +18,14 @@ import org.springframework.security.web.server.ui.LoginPageGeneratingWebFilter;
 
 @Configuration
 @EnableWebSecurity
+
 public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	
 	private final String[] url= {
 			"/luxury",
-			"/luxury/auth/login"
+			"/login",
+			"/logout"
 			
 	};
 	@Autowired
@@ -42,13 +44,17 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 	
 		http
+		 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+		 .and()
 		.authorizeRequests()
-	     .antMatchers("/luxury","/login").permitAll()
+	     .antMatchers(url).permitAll()
 	     .antMatchers("/web").hasAnyAuthority("STUDENT")
 	     .anyRequest()
 	     .authenticated()
 	     .and()
-	      .formLogin()
+	      .formLogin().loginPage("/login")
+	     .and()
+	     .logout().logoutUrl("/logout")
 	     .and()
 	   .csrf().disable()
 	       .exceptionHandling().accessDeniedPage("/web/403")

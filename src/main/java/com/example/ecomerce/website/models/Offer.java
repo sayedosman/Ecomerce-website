@@ -25,8 +25,7 @@ public class Offer {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="o_id")
 	private long id;
-	@ManyToMany(fetch=FetchType.EAGER,cascade={CascadeType.DETACH, 
-			CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+	@ManyToMany(fetch=FetchType.EAGER,cascade=CascadeType.MERGE)
 	@JoinTable(
 			name="p_offer",
 			joinColumns=@JoinColumn(name="p_id"),

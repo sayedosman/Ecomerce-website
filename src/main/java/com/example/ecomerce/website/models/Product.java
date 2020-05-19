@@ -60,14 +60,22 @@ public class Product {
 	@OneToMany(fetch = FetchType.EAGER,cascade=CascadeType.ALL,mappedBy = "product")
 	@Fetch(value = FetchMode.SUBSELECT)
 	private List<Images> images;
+	@ManyToMany(fetch = FetchType.EAGER, cascade=CascadeType.MERGE ,mappedBy = "products")
+	@Fetch(value = FetchMode.SUBSELECT)
+	private List<Orders> orders;
 	
-	@ManyToMany(fetch = FetchType.EAGER, cascade={CascadeType.DETACH, 
-			CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH},mappedBy = "productcos")
+	public List<Orders> getOrders() {
+		return orders;
+	}
+	public void setOrders(List<Orders> orders) {
+		this.orders = orders;
+	}
+	@ManyToMany(fetch = FetchType.EAGER, cascade=CascadeType.MERGE,mappedBy = "productcos")
 	
 	@Fetch(value = FetchMode.SUBSELECT)
 	private List<Color>colors;
 	
-	@ManyToMany(fetch = FetchType.EAGER,cascade=CascadeType.ALL,mappedBy = "productS")
+	@ManyToMany(fetch = FetchType.EAGER,cascade=CascadeType.MERGE,mappedBy = "productS")
 	@Fetch(value = FetchMode.SUBSELECT)
 	private List<Offer> offer;
 	public Product() {}
@@ -89,7 +97,7 @@ public class Product {
 	public void setSizes(List<Size> sizes) {
 		this.sizes = sizes;
 	}
-	@ManyToMany(fetch = FetchType.EAGER,cascade=CascadeType.ALL,mappedBy = "products")
+	@ManyToMany(fetch = FetchType.EAGER,cascade=CascadeType.MERGE,mappedBy = "products")
 
 	@Fetch(value = FetchMode.SUBSELECT)
 	private List<Size>sizes;

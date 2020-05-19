@@ -15,10 +15,12 @@ public class AppUserDetails implements UserDetails{
 	 */
 	private static final long serialVersionUID = 1L;
 	private User user;
+	
+	
 	public AppUserDetails(User user) {
 		this.user = user;
 	}
-
+	public AppUserDetails() {}
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		

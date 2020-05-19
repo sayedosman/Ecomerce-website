@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+         
+    <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>  
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>   
+
+    
 <!DOCTYPE html>
 <html>
 <title>Luxury Watches A Ecommerce Category Flat Bootstarp Resposive Website Template | Account :: w3layouts</title>
@@ -42,21 +48,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 			<div class="account-main">
 				<div class="col-md-6 account-left">
-					<h3>Existing User</h3>
+					<h3>Existing User</h3>hdhdfjh
 					<div class="account-bottom">
-                    <form action="/login" method="post">
+                    <form:form  action="/login" method="POST">
 
-               <input placeholder="username" type="text" tabindex="3" required name="username"  value="">
+                <input placeholder="username" type="text" tabindex="3" required="required"  name="username" />
 		        
-			    <input placeholder="Password" type="password" tabindex="4" required name="password" value="">
-		 
-		  <button type="submit">Click Me!</button>
-		  </form>
-                        <div class="address">
-							<a class="forgot" href="#">Forgot Your Password?</a>
-							<div class="address submit">
-							
-							</div>
+			   <input placeholder="Password" type="password" tabindex="4" required="required"  name="password" />
+		<div class="address submit">
+							 <input type="submit" value="login" name="submit" />
+							</div>	  
+							</form:form>
+                        
 							
 							
 

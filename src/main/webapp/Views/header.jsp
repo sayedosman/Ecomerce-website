@@ -74,15 +74,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 				<div class="col-md-6 top-header-left">
 					<div class="cart box_1">
-						<a href="Checkout.jsp">
+						<a href="/luxury/luxury/checkout">
 							 <div class="total">
-							 <%
-							
-								if(session.getAttribute("price")!=null)
-								{%>
-								$<%=session.getAttribute("price") %>
+							 	$ ${price }
 								
-								<%} %></div>
+							</div>
 								<img src="/resourses/images/cart-1.png" alt="" />
 						</a>
 						<p><a href="/luxury_site/Empty" class="simpleCart_empty">Empty Cart</a></p>
@@ -105,7 +101,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="header">
 				<div class="col-md-9 header-left">
 				<div class="top-nav">
-				<ul class="memenu skyblue"><li class="active"><a href="">Home</a></li>
+				<ul class="memenu skyblue"><li class="active"><a href="/luxury">Home</a></li>
 					<li class="grid"><a href="#">Category</a>
 						<div class="mepanel">
 					<div class="col1 me-one">
@@ -146,7 +142,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</li>
 		               </sec:authorize>
 						<sec:authorize access="isAuthenticated()">
-						<li class="grid"><a href="Logout.jsp">Logout</a>
+						<li class="grid"><a href="/logout">Logout</a>
 						</li> 
 		               </sec:authorize>
 						
@@ -158,9 +154,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 				<div class="col-md-3 header-right"> 
 				<div class="search-bar">
-				<form action="/luxury/handl" method="POST">
+				<form action="/luxury/handle" method="POST">
 					<input type="text"   name="name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}">
-					<input type="submit" name="submit1"   value="search"/>
+					<input type="submit" name="submit"   value="search"/>
 									
 				</div>
 			</div>

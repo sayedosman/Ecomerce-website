@@ -177,13 +177,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<span class="women1">: CK09</span></li>
 							</ul>
 							
-							<form action="/luxury/AllController" method="POST">
+							<form action="/luxury/handle"  method="POST">
 								<div class="address submit">
 										<input type="hidden" name="id" value=${Product.id } />
-										<input type="text"    name="quantity" value="">
+												</div><input type="text"    name="quantity" value="">
 										
 										<input type="submit" name="submit"   value="Add to cart"/>
-										</div>
+								
 																			 
 								</form>
 								</div>

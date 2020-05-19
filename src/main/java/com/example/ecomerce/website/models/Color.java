@@ -28,8 +28,7 @@ public class Color {
 	
 	
 	
-	@ManyToMany(fetch=FetchType.EAGER, cascade={CascadeType.DETACH, 
-			CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+	@ManyToMany(fetch=FetchType.EAGER,cascade=CascadeType.MERGE)
 	@JoinTable(
 			name="pro_color",
 			joinColumns=@JoinColumn(name="p_id"),

@@ -1,5 +1,6 @@
 package com.example.ecomerce.website.models;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -13,51 +14,66 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
-@Table(name="size")
+@Table(name="orders")
+public class Orders {
 
-public class Size {
-   
-	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="s_id")
+	@Column(name="o_id")
 	private long id;
-	@Column(name="s_name")
+	@Column(name="o_phone")
+	private String phone;
+	@Column(name="o_date")
+	private Date date;
+	@Column(name="u_name")
 	private String name;
-	public Size() {}
-
+	@Column(name="u_address")
+	private String address;
 	@ManyToMany(fetch=FetchType.EAGER, cascade=CascadeType.MERGE)
 	@JoinTable(
-			name="pro_size",
-			joinColumns=@JoinColumn(name="p_id"),
-			inverseJoinColumns= @JoinColumn(name="s_id")
+			name="order_items",
+			joinColumns=@JoinColumn(name="o_id"),
+			inverseJoinColumns= @JoinColumn(name="p_id")
 			)
 	private List<Product>  products;
 	public long getId() {
 		return id;
 	}
-
 	public void setId(long id) {
 		this.id = id;
 	}
-
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	public Date getDate() {
+		return date;
+	}
+	public void setDate(Date date) {
+		this.date = date;
+	}
 	public String getName() {
 		return name;
 	}
-
 	public void setName(String name) {
 		this.name = name;
 	}
-
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
 	public List<Product> getProducts() {
 		return products;
 	}
-
 	public void setProducts(List<Product> products) {
 		this.products = products;
 	}
+	
 	
 }
