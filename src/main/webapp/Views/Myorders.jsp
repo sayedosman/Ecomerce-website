@@ -68,7 +68,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="ckeckout">
 		<div class="container">
 			<div class="ckeck-top heading">
-				<h2>MyOrders</h2>
+				<h2>MyORDERS</h2>
 			</div>
 			<div class="ckeckout-top">
 			<div class="cart-items">
@@ -81,11 +81,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			 <div class="tabs">
 					<ul class="menu_drop">
 				<li class="item1"><a href="#"><img src="/resourses/images/arrow.png" alt="">Products</a>
-				
 					<ul>
 						<li class="subitem1"><a href="#"> 
+					
 				 <c:forEach var="Product" items="${order.products}">
-	                  
+	       
 	            
 	            <ul class="cart-header">
 					       <li class="ring-in">  <img class="img-responsive zoom-img" src="/resourses/${Product.getImages().get(0).getName() }"  alt="" />
@@ -93,7 +93,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li><span class="name">${Product.name }</span></li>
 						<li><span class="cost">$ ${Product.price }</span></li>
 						
-					
+					<div class="clearfix"> </div>
 				</ul>
 				
 	            
