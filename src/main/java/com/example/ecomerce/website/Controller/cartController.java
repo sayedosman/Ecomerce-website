@@ -196,4 +196,24 @@ public class cartController {
 		
 		 return mvn;
 	 }
+	 @GetMapping("/Empty")
+	 public ModelAndView Empty(HttpSession session)
+	 {
+		List<Product>products=(List<Product>) session.getAttribute("products");
+		 double price=(double) session.getAttribute("price");
+		 System.out.println("wwelcom");
+		 products=null;
+		 price=0.0;
+	
+		 session.setAttribute("products",products);
+		 session.setAttribute("price",price);
+		 System.out.println("wwelcom2");
+		
+		 
+		 ModelAndView mvn=new ModelAndView("index");
+		  mvn.addObject("Categeries",categoryService.getAllCategory());
+		  mvn.addObject("Brands",brandService.getAllBrand());
+		  mvn.addObject("Products",productService.getAllProduct());
+		  return mvn;
+	 }
 }

@@ -25,7 +25,9 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 	private final String[] url= {
 			"/luxury",
 			"/login",
-			"/logout"
+			"/logout",
+			"/register",
+			"/processRegister"
 			
 	};
 	@Autowired
@@ -44,15 +46,13 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 	
 		http
-		 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-		 .and()
 		.authorizeRequests()
 	     .antMatchers(url).permitAll()
 	     .antMatchers("/web").hasAnyAuthority("STUDENT")
 	     .anyRequest()
 	     .authenticated()
 	     .and()
-	      .formLogin().loginPage("/login")
+	      .formLogin().loginPage("/login").defaultSuccessUrl("/luxury")
 	     .and()
 	     .logout().logoutUrl("/logout")
 	     .and()

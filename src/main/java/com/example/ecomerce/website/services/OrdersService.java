@@ -42,4 +42,12 @@ public class OrdersService {
 		System.out.println("welcome1");
 		ordersRepository.save(order);
 	}
+	public List<Orders>getAllUserorders(){
+		AppUserDetails principal = (AppUserDetails) SecurityContextHolder.getContext()
+                .getAuthentication().getPrincipal();
+
+		 User user=principal.getUser();
+		return  ordersRepository.findByName(user.getFirstname());
+		 
+	}
 }

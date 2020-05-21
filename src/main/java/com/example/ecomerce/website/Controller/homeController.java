@@ -122,6 +122,22 @@ public class homeController {
 	  
 	  return mvn;
   }
- 
-  
+ @GetMapping("/category/{categoryName}")
+ public ModelAndView showCategoryProducts(@PathVariable("categoryName") String categoryName)
+ {
+	 ModelAndView mvn=new ModelAndView("searchCatogery");
+	  mvn.addObject("Categeries",categoryService.getAllCategory());
+	  mvn.addObject("Brands",brandService.getAllBrand());
+	  mvn.addObject("category", categoryService.getCategory(categoryName));
+	  return mvn;
+ }
+ @GetMapping("/brand/{brandName}")
+ public ModelAndView showBrandProducts(@PathVariable("brandName") String brandName)
+ {
+	 ModelAndView mvn=new ModelAndView("searchBrand");
+	  mvn.addObject("Categeries",categoryService.getAllCategory());
+	  mvn.addObject("Brands",brandService.getAllBrand());
+	  mvn.addObject("brand", brandService.getBrand(brandName));
+	  return mvn;
+ }
 }

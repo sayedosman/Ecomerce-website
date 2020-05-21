@@ -17,13 +17,6 @@
 <link href="/resourses/css/style.css" rel="stylesheet" type="text/css" media="all" />	
 <!--//theme-style-->
 <!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="/__/firebase/7.14.2/firebase-app.js"></script>
-
-<!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
-
-<!-- Initialize Firebase -->
-<script src="/__/firebase/init.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Luxury Watches Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
@@ -81,7 +74,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</div>
 								<img src="/resourses/images/cart-1.png" alt="" />
 						</a>
-						<p><a href="/luxury_site/Empty" class="simpleCart_empty">Empty Cart</a></p>
+						<p><a href="//luxury/luxury/Empty" class="simpleCart_empty">Empty Cart</a></p>
 						<div class="clearfix"> </div>
 					</div>
 				</div>
@@ -108,7 +101,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					
 					    <ul>
 					 <c:forEach var="category" items="${Categeries}">
-					  <li><a  href="searchCatogery.jsp?id=${category.id}" method="post">${category.name}</a></li>
+					  <li><a  href="/luxury/category/${category.name}" method="post">${category.name}</a></li>
 						</c:forEach>
 						
 						</ul>
@@ -123,7 +116,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					    <ul>
 					     <ul>
 					 <c:forEach var="brand" items="${Brands}">
-					  <li><a  href="searchCatogery.jsp?id=${brand.id}" method="post">${brand.name}</a></li>
+					  <li><a  href="/luxury/brand/${brand.name}" method="post">${brand.name}</a></li>
 						</c:forEach>
 						
 						</ul>
@@ -136,14 +129,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</li>
 						
 						<sec:authorize access="!isAuthenticated()">
-						<li class="grid"><a href="Login.jsp">Login</a>
+						<li class="grid"><a href="/login">Login</a>
 						</li>
-						<li class="grid"><a href="Register.jsp">Register</a>
+						<li class="grid"><a href="/register">Register</a>
 						</li>
 		               </sec:authorize>
 						<sec:authorize access="isAuthenticated()">
 						<li class="grid"><a href="/logout">Logout</a>
 						</li> 
+						<li class="grid"><a href="/luxury/orders/myorders">MyOrders</a>
+						</li>
 		               </sec:authorize>
 						
 						
@@ -154,10 +149,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 				<div class="col-md-3 header-right"> 
 				<div class="search-bar">
+				 <sec:authorize access="isAuthenticated()">
 				<form action="/luxury/handle" method="POST">
 					<input type="text"   name="name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}">
 					<input type="submit" name="submit"   value="search"/>
-									
+						</form>
+						</sec:authorize>			
 				</div>
 			</div>
 			<div class="clearfix"> </div>

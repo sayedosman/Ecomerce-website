@@ -26,7 +26,7 @@ public class Type {
 	@Column(name="name")
 	private String name;
 	
-	@OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL,mappedBy ="type" )
+	@OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.MERGE,mappedBy ="type" )
 	private List<User>users;
 	
 

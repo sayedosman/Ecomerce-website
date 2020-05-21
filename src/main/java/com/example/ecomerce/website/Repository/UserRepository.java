@@ -10,6 +10,6 @@ import org.springframework.stereotype.Repository;
 import com.example.ecomerce.website.models.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long>{
-	   public User findByEamil(String eamil);
+	   public User findByEmail(String email);
 	
 }

@@ -10,7 +10,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
+
 
 @Entity
 @Table(name="users")
@@ -20,23 +24,37 @@ public class User {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="u_id")
 	private long userId;
+	 @NotNull
+	  @NotEmpty
 	@Column(name="u_fname")
 	private String firstname;
 	@Column(name="u_lname")
 	private String lastname;
 	@Column(name="u_mail")
-	private String eamil;
+	private String email;
 	@Column(name="u_pass")
 	private String password;
-	@Column(name="u_phone")
+	@Column(name="u_phone",unique = true)
 	private String phone;
 	@Column(name="u_gender")
 	private String gender;
-	@Column(name="u_address")
+	@Column(name="u_address",unique = true)
 	private String address;
-	@ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.MERGE)
 	@JoinColumn(name="u_type")
 	private Type type;
+	@Transient
+	private String confirmPassword;
+	public String getConfirmPassword() {
+		return confirmPassword;
+	}
+
+
+	public void setConfirmPassword(String confirmPassword) {
+		this.confirmPassword = confirmPassword;
+	}
+
+
 	public Type getType() {
 		return type;
 	}
@@ -80,13 +98,15 @@ public class User {
 	}
 
 
-	public String getEamil() {
-		return eamil;
+	
+
+	public String getEmail() {
+		return email;
 	}
 
 
-	public void setEamil(String eamil) {
-		this.eamil = eamil;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 
@@ -133,6 +153,6 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [userId=" + userId + ", firstname=" + firstname + ", lastname=" + lastname + ", password="
-				+ password + ", email=" + eamil + ", gender=" + gender + ", address=" + address + "]";
+				+ password + ", email=" + email + ", gender=" + gender + ", address=" + address + "]";
 	}
 }

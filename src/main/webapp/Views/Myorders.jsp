@@ -26,7 +26,33 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="text/javascript" src="/resourses/js/memenu.js"></script>
 <script>$(document).ready(function(){$(".memenu").memenu();});</script>	
 <!--dropdown-->
-<script src="/resourses/js/jquery.easydropdown.js"></script>			
+<script src="/resourses/js/jquery.easydropdown.js"></script>	
+<script>$(document).ready(function(){$(".memenu").memenu();});</script>	
+<!--dropdown-->
+<script src="js/jquery.easydropdown.js"></script>	
+<script type="text/javascript">
+	$(function() {
+	
+	    var menu_ul = $('.menu_drop > li > ul'),
+	           menu_a  = $('.menu_drop > li > a');
+	    
+	    menu_ul.hide();
+	
+	    menu_a.click(function(e) {
+	        e.preventDefault();
+	        if(!$(this).hasClass('active')) {
+	            menu_a.removeClass('active');
+	            menu_ul.filter(':visible').slideUp('normal');
+	            $(this).addClass('active').next().stop(true,true).slideDown('normal');
+	        } else {
+	            $(this).removeClass('active');
+	            $(this).next().stop(true,true).slideUp('normal');
+	        }
+	    });
+	
+	});
+</script>		
+		
 </head>
 <body>
 <jsp:include page="header.jsp" />
@@ -42,52 +68,54 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="ckeckout">
 		<div class="container">
 			<div class="ckeck-top heading">
-				<h2>CHECKOUT</h2>
+				<h2>MyOrders</h2>
 			</div>
 			<div class="ckeckout-top">
 			<div class="cart-items">
-			 	
+			 <div class="in-check" >
+			<c:forEach var="order" items="${orders}">
+			 <ul >
+			 <li><span>Date</span></li>
+			<li><span>${order.date }</span></li>		
+			 </ul>
+			 <div class="tabs">
+					<ul class="menu_drop">
+				<li class="item1"><a href="#"><img src="/resourses/images/arrow.png" alt="">Products</a>
 				
-			<div class="in-check" >
-				<ul class="unit">
-					<li><span>Item</span></li>
-					<li><span>Product Name</span></li>		
-					<li><span>Unit Price</span></li>
-					<li><span>Quantity</span></li>
-					<li> </li>
-					<div class="clearfix"> </div>
-				</ul>
-	             <c:forEach var="Product" items="${products}">
-	            ${Product.quantity }
+					<ul>
+						<li class="subitem1"><a href="#"> 
+				 <c:forEach var="Product" items="${order.products}">
+	                  
 	            
 	            <ul class="cart-header">
-					
-						<li class="ring-in">  <a href="/luxury/single/${Product.id}" class="mask"><img class="img-responsive zoom-img" src="/resourses/${Product.getImages().get(0).getName() }"  alt="" /></a>
+					       <li class="ring-in">  <img class="img-responsive zoom-img" src="/resourses/${Product.getImages().get(0).getName() }"  alt="" />
 						</li>
 						<li><span class="name">${Product.name }</span></li>
 						<li><span class="cost">$ ${Product.price }</span></li>
-						<li><form action="/luxury/handle" method="POST">
-					    <input type="hidden" name="oq" value=${Product.quantity }>
-				<input type="hidden" name="id2" value=${Product.id }>
-						<input type="text" name="quantity" value=${Product.quantity }>
-						<input type="submit" name="submit" value="Update"/>
-						</form></li>
-						<li><a href="/luxury/luxury/Delete/${Product.id}"><img src="/resourses/images/close.png" align="right"/></a>
 						
-						</li>
-						
-					<div class="clearfix"> </div>
+					
 				</ul>
 				
 	            
 	            
 	            </c:forEach>
-	            
-	            <a href="/luxury/luxury/save"><button> save</button></a>
-	            
+					    
+                               </a></li>
+						</ul>
+				</li>
+				</ul>
+				</div> 
+				
+				</c:forEach>
+			 
+			 
+			 
+			 
+			 
+			 
+			 </div>
+			 	
 
-		
-			</div>
 			</div>  
 		 </div>
 		</div>
