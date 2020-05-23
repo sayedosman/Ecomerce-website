@@ -15,6 +15,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 @Entity
 @Table(name="size")
 
@@ -29,12 +32,17 @@ public class Size {
 	private String name;
 	public Size() {}
 
-	@ManyToMany(fetch=FetchType.EAGER, cascade=CascadeType.MERGE)
-	@JoinTable(
-			name="pro_size",
-			joinColumns=@JoinColumn(name="p_id"),
-			inverseJoinColumns= @JoinColumn(name="s_id")
-			)
+
+	public Size(long id, String name) {
+		super();
+		this.id = id;
+		this.name = name;
+	}
+
+
+	@ManyToMany(fetch=FetchType.EAGER,cascade=CascadeType.MERGE)
+	 @JoinTable(name = "pro_size", joinColumns = @JoinColumn(name = "s_id", referencedColumnName = "s_id"), inverseJoinColumns = @JoinColumn(name = "p_id", referencedColumnName = "p_id"))
+	@Fetch(value = FetchMode.SUBSELECT)
 	private List<Product>  products;
 	public long getId() {
 		return id;

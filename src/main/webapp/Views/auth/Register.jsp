@@ -44,7 +44,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<h3>Existing User</h3>
 					<div class="account-bottom">
 	          
-                    <form action="/register" method="post" modelAttribute="user">
+                    <form action="/processRegister" method="post" modelAttribute="user">
                     <input placeholder="First name" type="text" tabindex="3" required name="firstname"  value="${user.firstname }">
 		    ${bindingResult.rejectValue("email", "asd") }
 			    <input placeholder="Last name" type="text" tabindex="4" required name="lastname" value="${user.lastname }">

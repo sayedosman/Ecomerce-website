@@ -68,6 +68,7 @@ public class authController {
 		
 		userValidator.validate(user,bindingResult);
 		if (bindingResult.hasErrors()) {
+			System.out.println("welcome");
 			bindingResult.getAllErrors().get(0);
 			List<String>genders=new ArrayList<String>();
 			genders.add("Male");
@@ -81,7 +82,7 @@ public class authController {
 			  return mvn;
         }
 		userService.save(user,"user");
-		ModelAndView mvn=new ModelAndView("index");
+		ModelAndView mvn=new ModelAndView("auth/login");
 		 mvn.addObject("Categeries",categoryService.getAllCategory());
 		  mvn.addObject("Brands",brandService.getAllBrand());
 		

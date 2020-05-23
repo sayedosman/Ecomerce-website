@@ -59,7 +59,10 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 	   .csrf().disable()
 	       .exceptionHandling().accessDeniedPage("/web/403")
 	    .and()
+	    .httpBasic()
+	    .and()
 	       .userDetailsService(userDetailsService);
+	      
 	 /*http    
 	   .authorizeRequests()
 	     .antMatchers("/luxury","/luxury/auth/login")

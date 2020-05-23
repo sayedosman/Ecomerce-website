@@ -25,10 +25,19 @@ public class Category {
 	@Column(name="c_name")
 	private String name;
 	
-	@OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL,mappedBy ="category" )
+	@OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.MERGE,mappedBy ="category" )
 	private List<Product>products;
 	public List<Product> getProducts() {
 		return products;
+	}
+
+
+
+
+	public Category(long id, String name) {
+		super();
+		this.id = id;
+		this.name = name;
 	}
 
 

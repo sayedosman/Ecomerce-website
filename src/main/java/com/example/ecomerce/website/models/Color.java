@@ -15,6 +15,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 @Entity
 @Table(name="color")
 
@@ -28,12 +31,14 @@ public class Color {
 	
 	
 	
+	public Color(long id, String name) {
+		super();
+		this.id = id;
+		this.name = name;
+	}
 	@ManyToMany(fetch=FetchType.EAGER,cascade=CascadeType.MERGE)
-	@JoinTable(
-			name="pro_color",
-			joinColumns=@JoinColumn(name="p_id"),
-			inverseJoinColumns= @JoinColumn(name="co_id")
-			)
+	 @JoinTable(name = "pro_color", joinColumns = @JoinColumn(name = "co_id", referencedColumnName = "co_id"), inverseJoinColumns = @JoinColumn(name = "p_id", referencedColumnName = "p_id"))
+	@Fetch(value = FetchMode.SUBSELECT)
 	private List<Product>  productcos;
 	public List<Product> getProductcos() {
 		return productcos;

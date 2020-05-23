@@ -23,10 +23,19 @@ public class Brand {
 	private long id;
 	@Column(name="b_name")
 	private String name;
-	@OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL,mappedBy ="brand" )
+	@OneToMany(fetch = FetchType.EAGER,cascade =CascadeType.MERGE,mappedBy ="brand" )
 	private List<Product>products;
 	public List<Product> getProducts() {
 		return products;
+	}
+
+
+
+
+	public Brand(long id, String name) {
+		super();
+		this.id = id;
+		this.name = name;
 	}
 
 

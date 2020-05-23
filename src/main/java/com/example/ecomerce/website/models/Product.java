@@ -38,21 +38,21 @@ public class Product {
 	private long id;
 	@Column(name="p_name",unique = true)
 	private String name;
-	@ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.MERGE)
 	@JoinColumn(name="cat_id")
 	private Category category;
-	@ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER,cascade =CascadeType.MERGE)
 	@JoinColumn(name="b_id")
 	private Brand brand;
 	@NotEmpty(message = "not empty")
 	@Column(name="p_desc")
 	private String description;
-	@Max(value=2)
+	@Max(value=50)
 	@Column(name="p_quantity")
 	private int quantity;
 	@Column(name="p_discount")
 	private int discount;
-	@Max(value=5)
+	@Max(value=2000)
 	@Column(name="p_price")
 	private int price;
 	@Column(name="sold")
@@ -70,8 +70,7 @@ public class Product {
 	public void setOrders(List<Orders> orders) {
 		this.orders = orders;
 	}
-	@ManyToMany(fetch = FetchType.EAGER, cascade=CascadeType.MERGE,mappedBy = "productcos")
-	
+	@ManyToMany(fetch = FetchType.EAGER,cascade=CascadeType.MERGE,mappedBy = "productcos")
 	@Fetch(value = FetchMode.SUBSELECT)
 	private List<Color>colors;
 	

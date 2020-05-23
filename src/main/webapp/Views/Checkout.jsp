@@ -26,8 +26,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="text/javascript" src="/resourses/js/memenu.js"></script>
 <script>$(document).ready(function(){$(".memenu").memenu();});</script>	
 <!--dropdown-->
-<script src="/resourses/js/jquery.easydropdown.js"></script>			
-</head>
+<script src="/resourses/js/jquery.easydropdown.js"></script>
+<script>
+$(function() {
+
+	  $("input:disabled").closest("div").click(function() {
+	    $(this).find("input:disabled").attr("disabled", false).focus();
+	  });
+
+	});
+
+</script>
 <body>
 <jsp:include page="header.jsp" />
 <div class="breadcrumbs">
@@ -68,8 +77,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li><span class="cost">$ ${Product.price }</span></li>
 						<li><form action="/luxury/handle" method="POST">
 					    <input type="hidden" name="oq" value=${Product.quantity }>
-				<input type="hidden" name="id2" value=${Product.id }>
-						<input type="text" name="quantity" value=${Product.quantity }>
+				<input type="hidden"  name="id2" value=${Product.id }>
+						<input type="text" name="quantity"  id="q" onclick="asd" disabled value=${Product.quantity }>
 						<input type="submit" name="submit" value="Update"/>
 						</form></li>
 						<li><a href="/luxury/luxury/Delete/${Product.id}"><img src="/resourses/images/close.png" align="right"/></a>

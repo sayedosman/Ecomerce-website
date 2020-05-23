@@ -31,12 +31,10 @@ public class Orders {
 	private String name;
 	@Column(name="u_address")
 	private String address;
-	@ManyToMany(fetch=FetchType.EAGER, cascade=CascadeType.MERGE)
-	@JoinTable(
-			name="order_items",
-			joinColumns=@JoinColumn(name="o_id"),
-			inverseJoinColumns= @JoinColumn(name="p_id")
-			)
+	
+	@ManyToMany(fetch=FetchType.EAGER,cascade=CascadeType.MERGE)
+	 @JoinTable(name = "order_items", joinColumns = @JoinColumn(name = "o_id", referencedColumnName = "o_id"), inverseJoinColumns = @JoinColumn(name = "p_id", referencedColumnName = "p_id"))
+
 	private List<Product>  products;
 	public long getId() {
 		return id;
