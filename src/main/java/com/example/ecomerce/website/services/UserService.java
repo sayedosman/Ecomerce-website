@@ -44,7 +44,7 @@ public User save(User user,String role)
 		Type type;
 		if(role.equals("user"))
 		{
-		 type=typeService.getAllType().get(0);
+		 type=typeService.getAllType().get(1);
 		}
 		else
 			 type=typeService.getAllType().get(1);

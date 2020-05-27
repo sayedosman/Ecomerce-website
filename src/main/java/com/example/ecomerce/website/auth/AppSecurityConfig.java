@@ -48,7 +48,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 		http
 		.authorizeRequests()
 	     .antMatchers(url).permitAll()
-	     .antMatchers("/web").hasAnyAuthority("STUDENT")
+	     .antMatchers("/addProduct").hasAnyAuthority("admin")
 	     .anyRequest()
 	     .authenticated()
 	     .and()
@@ -57,8 +57,6 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 	     .logout().logoutUrl("/logout")
 	     .and()
 	   .csrf().disable()
-	       .exceptionHandling().accessDeniedPage("/web/403")
-	    .and()
 	    .httpBasic()
 	    .and()
 	       .userDetailsService(userDetailsService);

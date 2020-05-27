@@ -137,10 +137,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<sec:authorize access="isAuthenticated()">
 						<li class="grid"><a href="/logout">Logout</a>
 						</li> 
-						<li class="grid"><a href="/luxury/orders/myorders">MyOrders</a>
-						</li>
 		               </sec:authorize>
-						
+		               <sec:authorize access="hasAnyAuthority('user')">
+		             <li class="grid"><a href="/luxury/orders/myorders">MyOrders</a>
+						</li>
+				   </sec:authorize>
+						<sec:authorize access="hasAnyAuthority('admin')">
+		             <li class="grid"><a href="/admin/addProduct">addProduct</a>
+						</li>
+						 <li class="grid"><a href="/admin/addImage">addImage</a>
+						</li>
+				   </sec:authorize>
 						
 			
 					</ul>
@@ -149,7 +156,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 				<div class="col-md-3 header-right"> 
 				<div class="search-bar">
-				 <sec:authorize access="isAuthenticated()">
+				<sec:authorize access="hasAnyAuthority('user')">
 				<form action="/luxury/handle" method="POST">
 					<input type="text"   name="name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}">
 					<input type="submit" name="submit"   value="search"/>

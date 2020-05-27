@@ -4,10 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.ecomerce.website.Repository.ColorRepository;
+import com.example.ecomerce.website.Repository.OfferRepository;
 import com.example.ecomerce.website.Repository.ProductRepository;
+import com.example.ecomerce.website.Repository.SizeRepository;
 import com.example.ecomerce.website.apiPackage.Brand2;
 import com.example.ecomerce.website.apiPackage.Category2;
 import com.example.ecomerce.website.apiPackage.Color2;
@@ -26,19 +31,46 @@ public class ProductService {
 	@Autowired
 	private ProductRepository productRepository;
 	
+	@Autowired
+	private OfferRepository offerRepository;
+	
+	@Autowired
+	private ColorRepository colorRepository;
+	
+	@Autowired
+	private SizeRepository sizeRepository;
+	
 	public List<Product>getAllProduct()
 	{
 		return productRepository.findAll();
 	}
+	@Transactional
 	public Product2 save(Product2 product2)
 	{
+		
 		Product product=changetoProduct(product2);
-		for(Color color:product.getColors())
-		System.out.println(color.getName());
+		
+		productRepository.saveAndFlush(product);
+		for(Offer offer:product.getOffer())
+			offerRepository.productOffer(product.getId(),offer.getId());
 		for(Size size:product.getSizes())
-		System.out.println(size.getName());
-		productRepository.save(product);
+			sizeRepository.productSize(product.getId(), size.getId());
+		for(Color color:product.getColors())
+			colorRepository.productColor(product.getId(), color.getId());
 		return product2;
+	}
+	@Transactional
+	public void save2(Product product,List<Integer>colors,List<Integer>sizes,List<Integer>offers)
+	{
+		productRepository.saveAndFlush(product);
+		for(Integer offerId:offers)
+			offerRepository.productOffer(product.getId(),offerId);
+		for(Integer sizeId:sizes)
+			sizeRepository.productSize(product.getId(),sizeId);
+		for(Integer colorId:colors)
+			colorRepository.productColor(product.getId(),colorId);
+		
+	
 	}
 	public List<Product2>getAllProduct2()
 	{
@@ -173,12 +205,12 @@ public class ProductService {
 			product.setDiscount(product2.getDiscount());
 			product.setPrice(product2.getPrice());
 			product.setSold(product2.getSold());
-			 for(Color2 color2:product2.getColor())
+			
+			for(Color2 color2:product2.getColor())
 				{
 						
-					
+				
 					Color color=new Color(color2.getId(),color2.getName());
-					
 					colors.add(color);
 						
 				}
@@ -197,13 +229,13 @@ public class ProductService {
 				for(Offer2 offer2:product2.getOffer())
 				{
 					Offer offer=new Offer(offer2.getId(),offer2.getName());
+					
 					offers.add(offer);
 						
 				}
 					product.setOffer(offers);
+			
 				
-				
-		
 				return product;
 	}
 	public Product getProduct(long id )

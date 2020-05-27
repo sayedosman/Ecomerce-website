@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.ecomerce.website.auth.UserValidator;
+import com.example.ecomerce.website.models.Color;
 import com.example.ecomerce.website.models.User;
 import com.example.ecomerce.website.services.BrandService;
 import com.example.ecomerce.website.services.CategoryService;
@@ -65,6 +66,7 @@ public class authController {
 	@PostMapping("/processRegister")
 	public ModelAndView ProcessRegister( @ModelAttribute("user") User user,BindingResult bindingResult)
 	{
+		Color color=new Color();
 		
 		userValidator.validate(user,bindingResult);
 		if (bindingResult.hasErrors()) {

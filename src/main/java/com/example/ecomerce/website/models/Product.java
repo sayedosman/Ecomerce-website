@@ -1,5 +1,6 @@
 package com.example.ecomerce.website.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -14,6 +15,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotEmpty;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -57,6 +59,33 @@ public class Product {
 	private int price;
 	@Column(name="sold")
 	private int sold;
+	@Transient
+	private List<Integer>colores;
+	@Transient
+	private List<Integer>sizs;
+	@Transient
+	private List<Integer> offers;
+	
+	public List<Integer> getColores() {
+		return colores;
+	}
+	
+	public List<Integer> getSizs() {
+		return sizs;
+	}
+	public void setSizs(List<Integer> sizs) {
+		this.sizs = sizs;
+	}
+	public List<Integer> getOffers() {
+		return offers;
+	}
+	public void setOffers(List<Integer> offers) {
+		this.offers = offers;
+	}
+	public void setColores(List<Integer> colores) {
+		this.colores = colores;
+	}
+
 	@OneToMany(fetch = FetchType.EAGER,cascade=CascadeType.ALL,mappedBy = "product")
 	@Fetch(value = FetchMode.SUBSELECT)
 	private List<Images> images;

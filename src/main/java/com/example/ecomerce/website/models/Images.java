@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
@@ -32,7 +33,12 @@ public class Images {
 	private Product product;
 	@Column(name="p_img")
 	private String name;
+	
 	public Images() {}
+	public Images(String name)
+	{
+		this.name=name;
+	}
 	public Product getProduct() {
 		return product;
 	}

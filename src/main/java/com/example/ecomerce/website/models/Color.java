@@ -32,10 +32,10 @@ public class Color {
 	
 	
 	public Color(long id, String name) {
-		super();
 		this.id = id;
 		this.name = name;
 	}
+	public Color() {}
 	@ManyToMany(fetch=FetchType.EAGER,cascade=CascadeType.MERGE)
 	 @JoinTable(name = "pro_color", joinColumns = @JoinColumn(name = "co_id", referencedColumnName = "co_id"), inverseJoinColumns = @JoinColumn(name = "p_id", referencedColumnName = "p_id"))
 	@Fetch(value = FetchMode.SUBSELECT)
@@ -46,7 +46,7 @@ public class Color {
 	public void setProducts(List<Product> productcos) {
 		this.productcos = productcos;
 	}
-	public Color() {}
+	
 	public long getId() {
 		return id;
 	}
@@ -59,5 +59,6 @@ public class Color {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
 	
 }

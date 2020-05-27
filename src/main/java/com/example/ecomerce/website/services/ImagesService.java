@@ -11,6 +11,7 @@ import com.example.ecomerce.website.apiPackage.Category2;
 import com.example.ecomerce.website.apiPackage.Images2;
 import com.example.ecomerce.website.models.Category;
 import com.example.ecomerce.website.models.Images;
+import com.example.ecomerce.website.models.Product;
 @Service
 public class ImagesService {
 
@@ -19,8 +20,10 @@ public class ImagesService {
 	@Autowired
 	private ProductService productService;
 	
-	public Images save(Images images)
+	public Images save(Images images,long ProductId)
 	{
+		Product product=productService.getProduct(ProductId);
+		images.setProduct(product);
 		imagesRepository.save(images);
 		return images;
 	}
