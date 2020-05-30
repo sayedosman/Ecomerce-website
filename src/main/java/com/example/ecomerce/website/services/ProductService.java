@@ -47,7 +47,6 @@ public class ProductService {
 	@Transactional
 	public Product2 save(Product2 product2)
 	{
-		
 		Product product=changetoProduct(product2);
 		
 		productRepository.saveAndFlush(product);
@@ -69,8 +68,27 @@ public class ProductService {
 			sizeRepository.productSize(product.getId(),sizeId);
 		for(Integer colorId:colors)
 			colorRepository.productColor(product.getId(),colorId);
-		
 	
+	
+	}
+	public void  delete(long productId)
+	{
+		System.out.println(productId);
+		productRepository.deleteById(productId);
+	}
+	@Transactional
+	public void update (Product product,List<Integer>colors,List<Integer>sizes,List<Integer>offers)
+	{
+		
+		productRepository.saveAndFlush(product);
+		for(Integer offerId:offers)
+			offerRepository.productOffer(product.getId(),offerId);
+		for(Integer sizeId:sizes)
+			sizeRepository.productSize(product.getId(),sizeId);
+		for(Integer colorId:colors)
+			colorRepository.productColor(product.getId(),colorId);
+		
+
 	}
 	public List<Product2>getAllProduct2()
 	{
@@ -83,6 +101,7 @@ public class ProductService {
 			List<Offer2>offers2=new ArrayList<Offer2>();
 		
 			Product2 product2=new Product2();
+			product2.setId(product.getId());
 			product2.setName(product.getName());
 			product2.setCategory(new Category2(product.getCategory().getId(),product.getCategory().getName()));
 			product2.setBrand(new Brand2(product.getBrand().getId(),product.getBrand().getName()));

@@ -27,7 +27,12 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 			"/login",
 			"/logout",
 			"/register",
-			"/processRegister"
+			"/processRegister",
+			"/Rest/password",
+			"/Rest/passwordProcess",
+			"/Rest/send/*",
+			"/Rest/RestProcess",
+			"/Rest/show/*",
 			
 	};
 	@Autowired

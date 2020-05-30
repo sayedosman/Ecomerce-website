@@ -2,7 +2,16 @@ package com.example.ecomerce.website.Controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import javax.servlet.Servlet;
 import javax.validation.Valid;
 
 import org.jboss.jandex.TypeTarget.Usage;
@@ -23,6 +32,7 @@ import com.example.ecomerce.website.services.CategoryService;
 import com.example.ecomerce.website.services.ColorService;
 import com.example.ecomerce.website.services.SizeService;
 import com.example.ecomerce.website.services.UserService;
+import com.sun.mail.smtp.SMTPTransport;
 
 import io.swagger.models.Model;
 @Controller
@@ -84,7 +94,36 @@ public class authController {
 			  return mvn;
         }
 		userService.save(user,"user");
-		ModelAndView mvn=new ModelAndView("auth/login");
+		 String uemail="sayedothman46@gmail.com";
+         String upass="sayosm1234";
+         
+         Properties props = System.getProperties();
+                 props.put("mail.smtps.host","smtp.gmail.com");
+                 props.put("mail.smtps.auth","true");
+         
+         props.put("mail.smtp.starttls","true");
+         
+         Session  session = Session.getInstance(props,null);
+              
+               try {
+                         Message msg = new MimeMessage(session);
+                         msg.setFrom(new InternetAddress("sayedothman46@gmail.com",false));
+                     
+
+                     msg.addRecipients(Message.RecipientType.TO,InternetAddress.parse(user.getEmail()));
+                     msg.setSubject("mail vervication");
+                 
+                     msg.setText("your vervication link is ::"+"http://localhost:8080/login");
+                     msg.setHeader("X-Mailer", "Tov Are's program");
+                         SMTPTransport t =
+                                    (SMTPTransport)session.getTransport("smtps");
+                   t.connect("smtp.gmail.com","sayedothman46@gmail.com", "sayosm1234");
+                                t.sendMessage(msg, msg.getAllRecipients());
+                     } catch (MessagingException ex) {
+                   System.out.println(ex.toString());
+               Logger.getLogger(Servlet.class.getName()).log(Level.SEVERE, null, ex);
+                     }
+		ModelAndView mvn=new ModelAndView("auth/ForgetPassword2");
 		 mvn.addObject("Categeries",categoryService.getAllCategory());
 		  mvn.addObject("Brands",brandService.getAllBrand());
 		

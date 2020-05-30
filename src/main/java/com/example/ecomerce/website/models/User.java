@@ -24,8 +24,6 @@ public class User {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="u_id")
 	private long userId;
-	 @NotNull
-	  @NotEmpty
 	@Column(name="u_fname")
 	private String firstname;
 	@Column(name="u_lname")

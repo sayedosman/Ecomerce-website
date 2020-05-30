@@ -52,7 +52,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							 <input type="submit" value="login" name="submit" />
 							</div>	  
 							</form:form>
-                        
+                        <div class="address">
+							<a class="forgot" href="/Rest/password">Forgot Your Password?</a>
+							</div>
 							
 							
 

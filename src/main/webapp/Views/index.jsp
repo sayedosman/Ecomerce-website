@@ -129,11 +129,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		           <c:forEach var="Product" items="${Products}">
 					<div class="col-md-4 product-left p-left">
 							<div class="product-main simpleCart_shelfItem">
+							<sec:authorize access="hasAnyAuthority('admin')">
+							 <a href="/admin/editProduct/${Product.id}" class="mask"><img class="img-responsive zoom-img" src="/resourses/${Product.getImages().get(0).getName() }"  alt="" /></a>
+					         </sec:authorize>
+					         <sec:authorize access="hasAnyAuthority('user')">
 					            <a href="/luxury/single/${Product.id}" class="mask"><img class="img-responsive zoom-img" src="/resourses/${Product.getImages().get(0).getName() }"  alt="" /></a>
+						 </sec:authorize>
+						 <sec:authorize access="!isAuthenticated()">
+						  <a href="/luxury/single/${Product.id}" class="mask"><img class="img-responsive zoom-img" src="/resourses/${Product.getImages().get(0).getName() }"  alt="" /></a>
+						</sec:authorize>
 						<div class="product-bottom">
 					<h3>${Product.name }</h3>
-		           <span>${Product.quantity.equals(Product.sold) ? 'sold' : '' } </span>
-							<h4><a class="item_add" href="#"><i></i></a> <span class=" item_price">$ ${Product.price }</span></h4>
+		           			<h4><a class="item_add" href="#"><i></i></a> <span class=" item_price">$ ${Product.price }</span></h4>
 							</div>
 							<div class="srch">
 								<span>-${Product.discount }%</span>
@@ -145,33 +152,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                           
 						
 							</c:forEach>		
-						
-
 					
-				
-						
-						  
-					
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		      </div>					
 			</div>
 		</div>

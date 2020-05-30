@@ -35,8 +35,12 @@ public class UserService {
 		  System.out.println(userRepository.findByEmail(username));
 		  return userRepository.findByEmail(username) ;
 	}
-	
-	
+	@Transactional
+	public void update(String password,long userId)
+	{
+		password=passwordEncoder.encode(password);
+		userRepository.update(password, userId);
+	}
 	
 	@Transactional
 public User save(User user,String role)
@@ -47,7 +51,7 @@ public User save(User user,String role)
 		 type=typeService.getAllType().get(1);
 		}
 		else
-			 type=typeService.getAllType().get(1);
+			 type=typeService.getAllType().get(0);
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 	    
 	user.setType(type);

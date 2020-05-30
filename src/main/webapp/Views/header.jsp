@@ -147,6 +147,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</li>
 						 <li class="grid"><a href="/admin/addImage">addImage</a>
 						</li>
+						
 				   </sec:authorize>
 						
 			

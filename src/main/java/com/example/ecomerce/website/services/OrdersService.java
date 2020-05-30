@@ -42,6 +42,13 @@ public class OrdersService {
 		System.out.println("welcome1");
 		ordersRepository.save(order);
 	}
+	@Transactional
+	public void update(long productId,long oldproductId)
+	{
+		
+		ordersRepository.updateorder(productId,oldproductId);
+	}
+	
 	public List<Orders>getAllUserorders(){
 		AppUserDetails principal = (AppUserDetails) SecurityContextHolder.getContext()
                 .getAuthentication().getPrincipal();

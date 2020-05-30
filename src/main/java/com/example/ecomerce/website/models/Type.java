@@ -34,7 +34,7 @@ public class Type {
 
 	public Type() {}
 	
-	
+	public Type(int id,String name) {this.id=id;this.name=name;}
 	
 
 	@Override
