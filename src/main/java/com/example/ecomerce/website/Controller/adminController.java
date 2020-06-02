@@ -1,13 +1,17 @@
 package com.example.ecomerce.website.Controller;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.transaction.Transactional;
+
+
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,13 +34,17 @@ import com.example.ecomerce.website.services.OfferService;
 import com.example.ecomerce.website.services.OrdersService;
 import com.example.ecomerce.website.services.ProductService;
 import com.example.ecomerce.website.services.SizeService;
+import com.example.ecomerce.website.services.getDataFromExcel;
 import com.example.ecomerce.website.services.productValidation;
 import com.example.ecomerce.website.services.uploadFile;
+
 
 @RestController
 @RequestMapping("/admin")
 public class adminController {
 
+	@Autowired
+	private getDataFromExcel getdataFromExcel;
 	@Autowired
 	private CategoryService categoryService;
 	@Autowired
@@ -171,6 +179,32 @@ public class adminController {
 		  return mvn;
 		 
 	}
+	}
+	@GetMapping("/report/user")
+	public  ResponseEntity<InputStreamResource> downloadUser() throws IOException {
+		String fileName=getdataFromExcel.writeToExcel();
+		InputStreamResource fileStream=new InputStreamResource(new FileInputStream(fileName));
+		 HttpHeaders header=new HttpHeaders();
+		header.add("Content-disposition", "attachment; filename="+fileName);
+		System.out.println(header);
+		return ResponseEntity.ok()
+				.headers(header)
+				 .contentType(MediaType.parseMediaType("application/vnd.ms-excel"))
+				.body(fileStream);
+				
+	}
+	@GetMapping("/report/products")
+	public  ResponseEntity<InputStreamResource> downloadproduct() throws IOException {
+		String fileName=getdataFromExcel.writeToExcelProduct();
+		InputStreamResource fileStream=new InputStreamResource(new FileInputStream(fileName));
+		 HttpHeaders header=new HttpHeaders();
+		header.add("Content-disposition", "attachment; filename="+fileName);
+		System.out.println(header);
+		return ResponseEntity.ok()
+				.headers(header)
+				 .contentType(MediaType.parseMediaType("application/vnd.ms-excel"))
+				.body(fileStream);
+				
 	}
 		
 }

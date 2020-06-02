@@ -22,6 +22,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.ecomerce.website.apiPackage.Color2;
+import com.example.ecomerce.website.apiPackage.Offer2;
+import com.example.ecomerce.website.apiPackage.Product2;
+import com.example.ecomerce.website.apiPackage.Size2;
 import com.example.ecomerce.website.models.User;
 
 
@@ -30,6 +34,8 @@ import com.example.ecomerce.website.models.User;
 public class getDataFromExcel {
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private ProductService productService;
 	
 	User user;
 
@@ -74,8 +80,9 @@ catch (Exception e)
 	
 	
 }
-public void writeToExcel() throws IOException
+public String writeToExcel() throws IOException
 {
+	String fleName="Users.xlsx";
 	//FileInputStream fis=new FileInputStream("C:\\Users\\sayed\\Documents\\asd.xlsx");
 	XSSFWorkbook workbook = new XSSFWorkbook(); 
 	
@@ -145,9 +152,112 @@ public void writeToExcel() throws IOException
 		row.createCell(7).setCellValue(users.get(i).getType().getName());
 	}
 	
-	 FileOutputStream fileOut = new FileOutputStream("C:\\Users\\sayed\\Documents\\asd.xlsx");
+	 FileOutputStream fileOut = new FileOutputStream(fleName);
      workbook.write(fileOut);
      fileOut.close();
      workbook.close();
+     return fleName;
 }
+public String writeToExcelProduct() throws IOException
+{
+	String fleName="Products.xlsx";
+	//FileInputStream fis=new FileInputStream("C:\\Users\\sayed\\Documents\\asd.xlsx");
+	XSSFWorkbook workbook = new XSSFWorkbook(); 
+	
+	
+	Sheet sheet = workbook.createSheet("products");
+	sheet.setColumnWidth(0, 6000);
+	sheet.setColumnWidth(1, 6000);
+	sheet.setColumnWidth(2, 6000);
+	sheet.setColumnWidth(3, 6000);
+	sheet.setColumnWidth(4, 6000);
+	sheet.setColumnWidth(5, 6000);
+	sheet.setColumnWidth(6, 6000);
+	sheet.setColumnWidth(7, 6000);
+	sheet.setColumnWidth(8, 6000);
+	sheet.setColumnWidth(9, 6000);
+	sheet.setColumnWidth(10, 6000);
+	sheet.setColumnWidth(11, 6000);
+	sheet.setColumnWidth(12, 6000);
+	sheet.setColumnWidth(13, 6000);
+
+	
+	Row header = sheet.createRow(0);
+	
+	CellStyle headerStyle = workbook.createCellStyle();
+	headerStyle.setFillForegroundColor(IndexedColors.LIGHT_BLUE.getIndex());
+	headerStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+	
+	XSSFFont font = ((XSSFWorkbook) workbook).createFont();
+	font.setFontName("Arial");
+	font.setFontHeightInPoints((short) 16);
+	font.setBold(true);
+	headerStyle.setFont(font);
+	
+	Cell headerCell = header.createCell(0);
+	
+	headerCell.setCellValue("Id");
+	headerCell.setCellStyle(headerStyle);
+	 headerCell = header.createCell(1);
+	headerCell.setCellValue("Name");
+	headerCell.setCellStyle(headerStyle);
+	
+	headerCell = header.createCell(2);
+	headerCell.setCellValue("Category");
+	headerCell.setCellStyle(headerStyle);
+	headerCell = header.createCell(3);
+	headerCell.setCellValue("Brand");
+	headerCell.setCellStyle(headerStyle);
+	headerCell = header.createCell(4);
+	headerCell.setCellValue("Description");
+	headerCell.setCellStyle(headerStyle);
+	headerCell = header.createCell(5);
+	headerCell.setCellValue("Quantity");
+	headerCell.setCellStyle(headerStyle);
+	
+	headerCell = header.createCell(6);
+	headerCell.setCellValue("Discount");
+	headerCell.setCellStyle(headerStyle);
+	headerCell = header.createCell(7);
+	headerCell.setCellValue("Price");
+	headerCell.setCellStyle(headerStyle);
+	headerCell = header.createCell(8);
+	headerCell.setCellValue("Color");
+	headerCell.setCellStyle(headerStyle);
+	headerCell = header.createCell(9);
+	headerCell.setCellValue("Size");
+	headerCell.setCellStyle(headerStyle);
+	headerCell = header.createCell(10);
+	headerCell.setCellValue("Offer");
+	headerCell.setCellStyle(headerStyle);
+	List<Product2>products=productService.getAllProduct2();
+	Row row;
+	for(int i=0;i<products.size();i++)
+	{
+		row=sheet.createRow(i+1);
+		row.createCell(0).setCellValue(products.get(i).getId());
+		row.createCell(1).setCellValue(products.get(i).getName());
+		row.createCell(2).setCellValue(products.get(i).getCategory().getName());
+		row.createCell(3).setCellValue(products.get(i).getBrand().getName());
+		row.createCell(4).setCellValue(products.get(i).getDescription());
+		row.createCell(5).setCellValue(products.get(i).getQuantity());
+		row.createCell(6).setCellValue(products.get(i).getDescription());
+		row.createCell(7).setCellValue(products.get(i).getPrice());
+		for(Color2 color2:products.get(i).getColor())
+			row.createCell(8).setCellValue(color2.getName());
+		for(Size2 size2:products.get(i).getSize())
+			row.createCell(9).setCellValue(size2.getName());
+		for(Offer2 offer2:products.get(i).getOffer())
+			row.createCell(10).setCellValue(offer2.getName());
+	
+
+	}
+	
+	 FileOutputStream fileOut = new FileOutputStream(fleName);
+     workbook.write(fileOut);
+     fileOut.close();
+     workbook.close();
+     return fleName;
+}
+
 }

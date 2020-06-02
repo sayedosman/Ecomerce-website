@@ -85,10 +85,10 @@
 		</dependency>
 		<!-- end paypall -->
 		<!-- xml format -->
-		<dependency>
+		<!-- <dependency>
             <groupId>com.fasterxml.jackson.dataformat</groupId>
                 <artifactId>jackson-dataformat-xml</artifactId>
-         </dependency>
+         </dependency>-->
          <!-- end xml format -->
 		<!-- swagger -->
 		<dependency>

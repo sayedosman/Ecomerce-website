@@ -114,12 +114,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="col1 me-one">
 					
 					    <ul>
-					     <ul>
+					
 					 <c:forEach var="brand" items="${Brands}">
 					  <li><a  href="/luxury/brand/${brand.name}" method="post">${brand.name}</a></li>
 						</c:forEach>
 						
-						</ul>
+				
 					    
 					    </ul>
 							</div>
@@ -147,6 +147,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</li>
 						 <li class="grid"><a href="/admin/addImage">addImage</a>
 						</li>
+						<li class="grid"><a href="#">Reports</a>
+						<div class="mepanel">
+					<div class="col1 me-one">
+					<ul>
+					  <li><a  href="/admin/report/user" method="post">Users</a></li>
+					    <li><a  href="/admin/report/products" method="post">Products</a></li>
+					     	</ul>
+						
+				
+							</div>
+							</div>
+					</li>
 						
 				   </sec:authorize>
 						

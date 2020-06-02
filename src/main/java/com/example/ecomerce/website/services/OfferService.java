@@ -22,10 +22,12 @@ public class OfferService {
 	private ProductService productService;
 	public List<Offer> getAllOffer()
 	{
+		
 		return offerRepository.findAll();
 	}
 	public Offer save(Offer offer)
 	{
+
 		offerRepository.save(offer);
 		return offer;
 	}
