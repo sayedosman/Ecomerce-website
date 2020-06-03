@@ -20,15 +20,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-
 import com.example.ecomerce.website.apiPackage.Product2;
 import com.example.ecomerce.website.models.Product;
 import com.example.ecomerce.website.services.OrdersService;
 import com.example.ecomerce.website.services.ProductService;
 import com.example.ecomerce.website.services.uploadFile;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 @RestController
 @RequestMapping("/product")
+@Api(value="Product",description = "Product API")
 public class productRest {
 
 	@Autowired
@@ -44,6 +49,13 @@ public class productRest {
 		return productService.getAllProduct2();
 	}
 	@GetMapping(value="/product/{ProductName}")
+	@ApiOperation(value="View a course Object ",response=Product2.class)
+	@ApiResponses(value= {
+			@ApiResponse(code = 200,message = "Successfuly retrive Object"),
+			@ApiResponse(code = 401,message = "You are not autherized "),
+			@ApiResponse(code = 403,message = "Access resource  deneded"),
+			@ApiResponse(code = 404,message = "Access resource not found")
+	})
 	public Product2 getProduct(@PathVariable("ProductName") String ProductName)
 	{
 		return productService.getproduct2(ProductName);
