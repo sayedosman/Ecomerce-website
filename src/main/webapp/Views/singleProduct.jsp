@@ -169,11 +169,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<li><span>SKU</span>
 								<span class="women1">: CK09</span></li>
 							</ul>
-							
+							<script type="text/javascript">
+
+                              function checkInteger() {
+                              var userData = document.getElementById("userInput");
+                              if((typeof(userData)=='number') && (myNum.toString().indexOf('.')==-1)) {
+                               return true;
+                                  }
+                                         else {
+
+                                           alert("Error!");
+                                                 return false;
+                                   }
+                              }
+                              </script>
 							<form action="/luxury/handle"  method="POST">
 								<div class="address submit">
 										<input type="hidden" name="id" value=${Product.id } />
-												</div><input type="text"    name="quantity" value="">
+												</div><input type="text"  id="userInput"  name="quantity" value="">
 										
 										<input type="submit" name="submit"   value="Add to cart"/>
 								

@@ -7,6 +7,7 @@ import java.util.List;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -26,13 +27,14 @@ import com.example.ecomerce.website.services.OrdersService;
 import com.example.ecomerce.website.services.ProductService;
 import com.example.ecomerce.website.services.uploadFile;
 
+
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 @RestController
-@RequestMapping("/product")
+@RequestMapping("/+")
 @Api(value="Product",description = "Product API")
 public class productRest {
 
@@ -59,6 +61,7 @@ public class productRest {
 	public Product2 getProduct(@PathVariable("ProductName") String ProductName)
 	{
 		return productService.getproduct2(ProductName);
+		
 	}
 	@PostMapping(value="/products")
 	public ResponseEntity<Product2>save(@Valid @RequestBody Product2 product)

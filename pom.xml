@@ -127,6 +127,7 @@
          <artifactId>spring-boot-starter-mail</artifactId>
       </dependency>
 <!-- end send mail -->
+
 		
 	</dependencies>
 
@@ -138,5 +139,5 @@
 			</plugin>
 		</plugins>
 	</build>
-
+    
 </project>

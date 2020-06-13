@@ -46,7 +46,10 @@ public class cartController {
 	private OrdersService ordersService;
 	 @PostMapping("/cart")
 	  public ModelAndView handlCart(@RequestParam("id") int  productId,@RequestParam("quantity") int quantity,HttpSession session ) {
-		  double price=0.0;
+		 
+		 if(quantity>0&& quantity<=productService.getProduct(productId).getQuantity() )
+		 {
+		 double price=0.0;
 		  
 		 List<Product>products =(List<Product>) session.getAttribute("products");
 		  if(products==null) {
@@ -94,6 +97,16 @@ public class cartController {
 				  }
 			  return null;
 		  }
+		 }
+		 else
+		 {
+			 ModelAndView mvn=new ModelAndView("singleProduct");
+			 
+			  mvn.addObject("Categeries",categoryService.getAllCategory());
+			  mvn.addObject("Brands",brandService.getAllBrand());
+			  mvn.addObject("Product",productService.getProduct(productId));
+			return mvn;
+		 }
 	  }
 	 @GetMapping("/checkout")
 	 public ModelAndView handleCheckout(HttpSession session)
