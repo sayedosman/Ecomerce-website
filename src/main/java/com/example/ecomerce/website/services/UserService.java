@@ -11,6 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.ecomerce.website.Repository.UserRepository;
+import com.example.ecomerce.website.auth.AppUserDetails;
 import com.example.ecomerce.website.models.Type;
 import com.example.ecomerce.website.models.User;
 @Service
@@ -28,12 +29,18 @@ public class UserService {
 		return userRepository.findAll();
 	}
 	
-	
+	/*public AppUserDetails getUser2(String username)
+	{
+		  Optional<User>user= userRepository.getUser(username);
+		 // user.orElse(other)
+		  return user.map(AppUserDetails::new).get();
+	}*/
 	
 	public User getUser(String username )
 	{
 		  System.out.println(userRepository.findByEmail(username));
-		  return userRepository.findByEmail(username) ;
+		  User user= userRepository.findByEmail(username) ;
+		  return user;
 	}
 	@Transactional
 	public void update(String password,long userId)

@@ -33,53 +33,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <body>
 <jsp:include page="/Views/header.jsp" />
-
-<div class="account">
-		<div class="container">
-		<div class="account-top heading">
-				<h2>ACCOUNT</h2>
-			</div>
-			<div class="account-main">
-				<div class="col-md-6 account-left">
-					<h3>Existing User</h3>
-					<div class="account-bottom">
-	          
-                    <form action="/processRegister" method="post" modelAttribute="user" acceptCharset="UTF-8">
-                    <input placeholder="First name" type="text" tabindex="3" required="required" name="firstname"  value="${user.firstname }"/>
-                   
-			    <input placeholder="Last name" type="text" tabindex="4" required="required" name="lastname" value="${user.lastname }"/>
-		         
-               <input placeholder="Email" type="text" tabindex="3" required="required" name="email"  value="${user.email }"/>
-		        
-			    <input placeholder="Mobile" type="text" tabindex="4" required="required" name="phone" value="${user.phone }"/>
-			    <input placeholder="Adrres" type="text" tabindex="4" required="required" name="address" value="${user.address }"/>
-		            <ul>
-		            <c:forEach var="gender" items="${genders }">  
-							<li><label class="radio left"><input type="radio" name="gender"  ${user.gender.equals(gender) ? 'checked' : '' } value="${gender}"><i></i>${gender}</label></li>
-					</c:forEach>
-							<div class="clearfix"></div>
-						</ul>
-		  
-                        <input placeholder="Password" type="password" tabindex="4" required="required" name ="password" value=""/>
-					
-					<input placeholder="Password" type="password" tabindex="4" required="required" name ="confirmPassword" value=""/>';
-					
-			<div class="address submit">
-							<input type="submit" value="Register" />
-						</div>
-						<form>
-         
-			
-                       
-                        </div>
-					</div>
-				</div>
-				
-				<div class="clearfix"></div>
-			</div>
-		</div>
-	</div>
+access denieded page
 <jsp:include page="/Views/footer.jsp" />
-
 </body>
 </html>

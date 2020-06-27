@@ -34,7 +34,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 @RestController
-@RequestMapping("/+")
+@RequestMapping("/")
 @Api(value="Product",description = "Product API")
 public class productRest {
 

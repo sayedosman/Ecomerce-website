@@ -25,6 +25,7 @@ public class OrdersService {
 	{
 		return ordersRepository.findAll();
 	}
+	@SuppressWarnings("unchecked")
 	@Transactional
 	public void save(HttpSession session)
 	{

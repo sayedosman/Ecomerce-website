@@ -15,10 +15,7 @@ public class AppUserDetailServise implements UserDetailsService{
 	private UserService userService;
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		System.out.println(username);
-		System.out.println();
 		User user= userService.getUser(username);
-		System.out.println(user.getEmail());
 		return new AppUserDetails(user);
 	}
 

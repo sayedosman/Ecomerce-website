@@ -28,11 +28,35 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
+		<!-- faster -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+			<exclusions>
+			  <exclusion>
+                    <artifactId>spring-boot-starter-logging</artifactId>
+                    <groupId>org.springframework.boot</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>hibernate-validator</artifactId>
+                    <groupId>org.hibernate.validator</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>spring-boot-starter-json</artifactId>
+                    <groupId>org.springframework.boot</groupId>
+                </exclusion>
+                </exclusions>
 		</dependency>
-
+            <!-- faster -->
+         
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-jdk14</artifactId>
+        </dependency>
+            
+            
+            
+            
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-tomcat</artifactId>
@@ -128,7 +152,19 @@
       </dependency>
 <!-- end send mail -->
 
+		<!-- faster -->
+		<dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-indexer</artifactId>
+            <optional>true</optional>
+        </dependency>
 		
+		
+		
+		
+		
+		
+		<!-- end faster -->
 	</dependencies>
 
 	<build>
@@ -137,6 +173,17 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.springframework.boot.experimental</groupId>
+                        <artifactId>spring-boot-thin-layout</artifactId>
+                        <version>1.0.15.RELEASE</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
 		</plugins>
 	</build>
     

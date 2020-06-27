@@ -1,5 +1,7 @@
 package com.example.ecomerce.website.auth;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -9,56 +11,62 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
+import com.example.ecomerce.website.models.Product;
 import com.example.ecomerce.website.models.User;
 import com.example.ecomerce.website.services.UserService;
 
 @Component
-public class UserValidator implements Validator {
+public class UserValidator   {
     @Autowired
     private UserService userService;
-   
-    @Override
-    public boolean supports(Class<?> aClass) {
-        return User.class.equals(aClass);
-    }
+    private Map<String,String>message;
 
-    @Override
-    public void validate(Object o, Errors errors) {
-    	
-        User user = (User) o;
+   	public Map<String, String> getMessage() {
+   		return message;
+   	}
+
+   	public void setMessage(Map<String, String> message) {
+   		this.message = message;
+   	}
+ 
+   	public  Map<String,String> validate(User user)
+	{
+		
+		message=new HashMap<String, String>();
       
         Pattern p = Pattern.compile("\\b[A-Z0-9._%-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}\\b");
     	Matcher m = p.matcher(user.getEmail());
     	 System.out.println(user);
     	String str="\\d{10}|(?:\\d{3}-){2}\\d{4}|\\(\\d{3}\\)\\d{3}-?\\d{4}";
     	
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "firstname", "NotEmpty");
         if (user.getFirstname().length() < 4 || user.getFirstname().length() > 32) {
-        	System.out.println("asd");
-            errors.rejectValue("firstname", "Size.userForm.firstname");
+        	message.put("firstname", "Size.userForm.firstname");
         }
       
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "lastname", "NotEmpty");
       if (user.getLastname().length() < 4 || user.getLastname().length() > 32) {
-    	  System.out.println("asd2");
-            errors.rejectValue("lastname", "Size.userForm.lastname");
+    	  message.put("lastname", "Size.userForm.lastname");
         }
    
+        if(m.matches()) {
+        	
         
         if (userService.getUser(user.getEmail()) != null) {
-        	System.out.println("asd5");
-            errors.rejectValue("email", "Duplicate.userForm.email");
+        	
+        	message.put("email", "Duplicate.userForm.email");
         }
-
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "NotEmpty");
+        }
+        else {
+        	message.put("email", "not a email");
+        }
+       
         if (user.getPassword().length() < 8 || user.getPassword().length() > 32) {
-        	System.out.println("asd6");
-            errors.rejectValue("password", "Size.userForm.password");
+        	message.put("password", "Size.userForm.password");
         }
 
         if (!user.getConfirmPassword().equals(user.getPassword())) {
-        	System.out.println("asd7");
-            errors.rejectValue("confirmPassword", "Diff.userForm.passwordConfirm");
+        	
+        	message.put("confirmPassword", "Diff.userForm.passwordConfirm");
         }
+    	return message;
     }
 }

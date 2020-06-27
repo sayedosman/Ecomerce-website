@@ -1,0 +1,69 @@
+  
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html>
+<title>Luxury Watches A Ecommerce Category Flat Bootstarp Resposive Website Template | Account :: w3layouts</title>
+<link href="/resourses/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<!--jQuery (necessary for Bootstrap's JavaScript plugins)-->
+<script src="/resourses/js/jquery-1.11.0.min.js"></script>
+<!--Custom-Theme-files-->
+<!--theme-style-->
+<link href="/resourses/css/style.css" rel="stylesheet" type="text/css" media="all" />	
+<!--//theme-style-->
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Luxury Watches Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!--start-menu-->
+<script src="/resourses/js/simpleCart.min.js"> </script>
+<link href="/resourses/css/memenu.css" rel="stylesheet" type="text/css" media="all" />
+<script type="text/javascript" src="/resourses/js/memenu.js"></script>
+<script>$(document).ready(function(){$(".memenu").memenu();});</script>	
+<!--dropdown-->
+<script src="/resourses/js/jquery.easydropdown.js"></script>			
+</head>
+
+<body>
+
+<div class="account">
+		<div class="container">
+		<div class="account-top heading">
+				<h2>ACCOUNT</h2>
+			</div>
+			<div class="account-main">
+				<div class="col-md-6 account-left">
+					<h3>Update Product</h3>
+					<div class="account-bottom">
+					 <form th:action="@{//admin/editProductProcess}" th:object="${product}" method="post">
+					  <input placeholder=" name" type="text" tabindex="3" hidden="hidden" th:field="*{id}"  value="${product.id }">
+					  <input placeholder=" name" type="text" tabindex="3" required name="name"  value="${product.name }">
+                      <table>
+                    <tr>
+                    <td> Category</td>
+                  <td>
+                   <select th:field="*{category}">
+                   <th:each="category : ${${Categeries}">
+                     <option th:value="${category.id}" th:text="${category.name}">
+                   <th:if="${product.category.name} == ${category.name}"/>
+                   
+                   </option>
+                        </select>
+		             <select name="category">
+		              <c:forEach var="category" items="${Categeries }">  
+							
+							<option ${product.category.name.equals(category.name) ? 'selected' : '' } value="${category.id}">${category.name}</option>
+								</c:forEach>
+					 </select>
+					</td>
+					</tr><tr>
+					<td> Brand</td>
+					<td>
+					
+                 
+	          
+
+</body>
+</html>

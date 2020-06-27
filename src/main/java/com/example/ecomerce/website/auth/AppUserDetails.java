@@ -32,10 +32,7 @@ public class AppUserDetails implements UserDetails{
 
 			@Override
 			public String getAuthority() {
-				System.out.println();
-				System.out.println(user.getType().getName());
-				System.out.println();
-				return user.getType().getName();
+					return user.getType().getName();
 				
 			}
 		};
@@ -46,9 +43,7 @@ public class AppUserDetails implements UserDetails{
 
 	@Override
 	public String getPassword() {
-		System.out.println();
-		System.out.println(user.getPassword());
-		System.out.println();
+		
 		return user.getPassword();
 	}
 

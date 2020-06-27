@@ -2,6 +2,7 @@ package com.example.ecomerce.website.Controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -72,14 +73,18 @@ public class authController {
 		  mvn.addObject("Brands",brandService.getAllBrand());
 		  mvn.addObject("genders",genders);
 		  return mvn;
+		/*model.addAttribute("user", new User());
+		model.addAttribute("Categeries",categoryService.getAllCategory());
+		model.addAttribute("Brands",brandService.getAllBrand());
+		model.addAttribute("genders",genders);
+		  return "auth/Register";*/
 	}
 	@PostMapping("/processRegister")
-	public ModelAndView ProcessRegister( @ModelAttribute("user") User user,BindingResult bindingResult)
+	public ModelAndView ProcessRegister(@ModelAttribute("user") User  user,BindingResult bindingResult)
 	{
-		Color color=new Color();
-		
-		userValidator.validate(user,bindingResult);
-		if (bindingResult.hasErrors()) {
+		//Color color=new Color();
+		  Map<String,String>message=userValidator.validate(user);
+		if (message.size()>0) {
 			System.out.println("welcome");
 			bindingResult.getAllErrors().get(0);
 			List<String>genders=new ArrayList<String>();

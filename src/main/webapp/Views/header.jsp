@@ -1,7 +1,8 @@
 <%@page import="org.springframework.beans.factory.annotation.Autowired"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
     <%@ page import="java.util.*" %>  
+   <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
        
     <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>  
@@ -10,6 +11,7 @@
 <html>
 <title>Luxury Watches A Ecommerce Category Flat Bootstrap Resposive Website Template | Home :: w3layouts</title>
 <link href="/resourses/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <!--jQuery(necessary for Bootstrap's JavaScript plugins)-->
 <script src="/resourses/js/jquery-1.11.0.min.js"></script>
 <!--Custom-Theme-files-->
@@ -28,7 +30,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="text/javascript" src="/resourses/js/memenu.js"></script>
 <script>$(document).ready(function(){$(".memenu").memenu();});</script>	
 <!--dropdown-->
-<script src="/resourses/js/jquery.easydropdown.js"></script>			
+<script src="/resourses/js/jquery.easydropdown.js"></script>	
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    $("#locales").change(function () {
+        var selectedOption = $('#locales').val();
+        if (selectedOption != ''){
+        	  alert('${pageContext.request.contextPath}?lang=' + selectedOption);
+            window.location.replace('${pageContext.request.contextPath}?lang=' + selectedOption);
+        }
+    });
+});
+</script>		
 </head>
 <body>
 
@@ -45,24 +60,34 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<optiosn value="2">Euro</option>
 							</select>
 						</div>
-						<div class="box1">
-							<select tabindex="4" class="dropdown">
-								<option value="" class="label">English :</option>
-								<option value="1">English</option>
-								<option value="2">French</option>
+						<!--  <div class="box1">
+							<select id="locales"  tabindex="4" class="dropdown" >
+								<option value="en">English</option>
+								<option value="fr">French</option>
 								<option value="3">German</option>
 							</select>
-						</div>
+						</div>-->
+						 <div class="box1">
+					<select id="locales"  >
+					<option value="" class="label">English :</option>
+                          <option value="en" >English</option>
+                           <option value="ar" >English</option>
+                       <option value="fr" >Franh</option>
+                       </select>
+                       </div>
+                       
 						<div class="clearfix"></div>
 					</div>
 				</div>
+				
 				<div class="box1">
-					 <div style=color:white;> 
+                      <div style=color:white;> 
 					 <sec:authorize access="isAuthenticated()">
-					 welcome
+                        <spring:message code="welcome.txt" />:
+
 					 <sec:authentication property="principal.user.firstname"/>
                </sec:authorize>
-			
+		
 				</div>
 				</div>
 				<div class="col-md-6 top-header-left">
@@ -74,7 +99,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</div>
 								<img src="/resourses/images/cart-1.png" alt="" />
 						</a>
-						<p><a href="/luxury/luxury/Empty" class="simpleCart_empty">Empty Cart</a></p>
+						<p><a href="/luxury/luxury/Empty" class="simpleCart_empty">
+					<spring:message code="Empty.txt" />	
+                    <spring:message code="Cart.txt" />	 
+						</a></p>
 						<div class="clearfix"> </div>
 					</div>
 				</div>
@@ -85,7 +113,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<!--top-header-->
 	<!--start-logo-->
 	<div class="logo">
-		<a href="index.html"><h1>Luxury Watches</h1></a>
+	           <spring:message code="Luxury.txt" />	
+	      <spring:message code="Watches.txt" />	
 	</div>
 	<!--start-logo-->
 	<!--bottom-header-->
@@ -94,8 +123,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="header">
 				<div class="col-md-9 header-left">
 				<div class="top-nav">
-				<ul class="memenu skyblue"><li class="active"><a href="/luxury">Home</a></li>
-					<li class="grid"><a href="#">Category</a>
+				<ul class="memenu skyblue"><li class="active"><a href="/luxury">  <spring:message code="Home.txt" />	</a></li>
+					<li class="grid"><a href="#">  <spring:message code="Category.txt" /></a>
 						<div class="mepanel">
 					<div class="col1 me-one">
 					
@@ -109,7 +138,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</div>
 					</li>
 					
-					<li class="grid"><a href="#">Brands</a>
+					<li class="grid"><a href="#"> <spring:message code="Brands.txt" /></a>
 						<div class="mepanel">
 					<div class="col1 me-one">
 					
@@ -125,13 +154,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</div>
 							</div>
 					</li>
-					<li class="grid"><a href="contact.jsp">Contact</a>
+					<li class="grid"><a href="contact.jsp"><spring:message code="Contact.txt" /></a>
 						</li>
 						
 						<sec:authorize access="!isAuthenticated()">
-						<li class="grid"><a href="/login">Login</a>
+						<li class="grid"><a href="/login"><spring:message code="Login.txt" /></a>
 						</li>
-						<li class="grid"><a href="/register">Register</a>
+						<li class="grid"><a href="/register"><spring:message code="Register.txt" /></a>
 						</li>
 		               </sec:authorize>
 						<sec:authorize access="isAuthenticated()">
